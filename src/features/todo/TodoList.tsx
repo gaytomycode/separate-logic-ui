@@ -4,15 +4,15 @@ import { setTodos, addTodo, selectTodos } from './todoSlice';
 import { getTodos, createTodo } from '../../api/todoApi';
 
 export function TodoList() {
-  const statuses = { true: 'text-green-400 bg-green-400/10', false: 'text-rose-400 bg-rose-400/10' }
+  const statuses = { 'true': 'text-green-400 bg-green-400/10', 'false': 'text-rose-400 bg-rose-400/10' }
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
 
-  function classNames(...classes) {
+  function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ')
   }
 
-  const { data, refetch } = useQuery('todos', getTodos, {
+  useQuery('todos', getTodos, {
     onSuccess: (data) => dispatch(setTodos(data)),
   });
 
@@ -76,7 +76,7 @@ export function TodoList() {
               </td>
               <td className="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
                 <div className="flex items-center justify-end gap-x-2 sm:justify-start">
-                  <div className={classNames(statuses[todo.completed], 'flex-none rounded-full p-1')}>
+                  <div className={classNames(statuses[todo.completed.toString() as 'true' | 'false'], 'flex-none rounded-full p-1')}>
                     <div className="h-1.5 w-1.5 rounded-full bg-current" />
                   </div>
                   <div className="hidden text-white sm:block">{todo.completed ? 'Completed' : 'Not Completed'}</div>
