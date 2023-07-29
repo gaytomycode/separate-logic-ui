@@ -142,3 +142,7 @@ export async function createTodo(title: string) {
 ```
 
 By following these clean code principles and separating concerns, the codebase becomes more maintainable and modular.
+
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. See the `LICENSE.md` file for full license text.
